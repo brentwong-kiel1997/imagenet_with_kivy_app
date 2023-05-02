@@ -1,0 +1,61 @@
+<CameraScreen>:
+    GridLayout:
+        cols:1
+        padding:5
+        spacing:5
+        Camera:
+            id: camera
+            resolution: (1280, 720)
+            play: False
+            size_hint_y:0.7
+            opacity:0
+        Button:
+            id: camera_button
+            text:'Start Camera'
+            on_press: root.start() if root.ids.camera.play == False else root.stop()
+            size_hint_y:0.15
+        Button:
+            text:'Capture'
+            on_press: root.capture()
+            size_hint_y:0.15
+
+<ImageScreen>:
+    GridLayout:
+        cols:1
+        padding:10
+        spacing: 5
+        Image:
+            id: img
+            source:''
+            size_hint_y:0.7
+        Button:
+            on_press: root.predict()
+            text:'Predict'
+            size_hint_y:0.1
+        Label:
+            id:predict_text
+            text:'Empty for now'
+            size_hint_y:0.1
+
+        Button:
+            text:'Back'
+            on_press:root.back()
+            size_hint_y:0.1
+
+
+
+
+<RootWidget>:
+    canvas.before:
+        Color:
+            rgba:(0, 1, 1, 0.7)
+        Rectangle:
+            pos:self.pos
+            size:self.size
+    CameraScreen:
+        id:camera_screen
+        name:'camera_screen'
+    ImageScreen:
+        id: image_screen
+        name: 'image_screen'
+
